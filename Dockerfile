@@ -9,7 +9,8 @@ FROM alpine:latest
 MAINTAINER Jan Grewe <jan@faked.org>
 
 ENV SDK_VERSION="24.4.1"
-ENV SDK_PACKAGES="android-23,build-tools-23.0.2,addon-google_apis-google-23,extra-android-support,extra-google-google_play_services"
+ENV SDK_PACKAGES="plattform-tools,build-tools-23.0.2,android-23,addon-google_apis-google-23,extra-android-m2repository,extra-android-support,extra-google-google_play_services"
+#,extra-google-m2repository"
 ENV GRADLE_VERSION="2.11"
 
 RUN apk update && \
