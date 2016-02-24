@@ -5,25 +5,34 @@
 # https://git.faked.org/jan/gitlab-ci-android
 #
 
-FROM alpine:latest
+FROM ubuntu:15.10
 MAINTAINER Jan Grewe <jan@faked.org>
 
-ENV SDK_VERSION="24.4.1"
-ENV SDK_PACKAGES="android-23,build-tools-23.0.2,addon-google_apis-google-23,extra-android-support,extra-google-google_play_services"
-ENV GRADLE_VERSION="2.11"
+ENV SDK_VERSION "24.4.1"
+ENV SDK_PACKAGES "plattform-tools,build-tools-23.0.2,android-23,addon-google_apis-google-23,extra-android-m2repository,extra-android-support,extra-google-google_play_services,extra-google-m2repository"
+ENV GRADLE_VERSION "2.11"
+ENV PATH "$PATH:/sdk/tools/templates/gradle/wrapper:/sdk/tools/"
+ENV DEBIAN_FRONTEND noninteractive
 
-RUN apk update && \
-    apk upgrade && \
-    apk add \
-      bash \
-      openjdk8 \
-    && \
-    rm -rf /var/cache/apk/*
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+      openjdk-8-jdk \
+      libc6-i386 \
+      lib32stdc++6 \
+      lib32gcc1 \
+      lib32ncurses5 \
+      lib32z1 \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+RUN rm -f /etc/ssl/certs/java/cacerts; \
+    /var/lib/dpkg/info/ca-certificates-java.postinst configure
 
 ADD http://dl.google.com/android/android-sdk_r${SDK_VERSION}-linux.tgz /sdk.tgz
 RUN tar zxvf sdk.tgz && \
     rm -v /sdk.tgz && \
-    mv /android-sdk-linux /sdk && \
-    echo 'export PATH=$PATH:/sdk/tools/templates/gradle/wrapper:/sdk/tools/' >> .bashrc
+    mv /android-sdk-linux /sdk
 
 RUN echo "y" | /sdk/tools/android update sdk -u --filter ${SDK_PACKAGES}
+
+RUN sed -i "s#distributionUrl=.*#distributionUrl=http\://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-all.zip#" /sdk/tools/templates/gradle/wrapper/gradle/wrapper/gradle-wrapper.properties && \
+    /sdk/tools/templates/gradle/wrapper/gradlew
