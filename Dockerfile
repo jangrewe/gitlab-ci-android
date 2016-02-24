@@ -13,6 +13,7 @@ ENV SDK_PACKAGES "plattform-tools,build-tools-23.0.2,android-23,addon-google_api
 ENV GRADLE_VERSION "2.11"
 ENV PATH "$PATH:/sdk/tools/templates/gradle/wrapper:/sdk/tools/"
 ENV DEBIAN_FRONTEND noninteractive
+ENV ANDROID_HOME "/sdk"
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
