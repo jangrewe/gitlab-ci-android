@@ -9,7 +9,7 @@ FROM ubuntu:15.10
 MAINTAINER Jan Grewe <jan@faked.org>
 
 ENV SDK_VERSION "24.4.1"
-ENV SDK_PACKAGES "plattform-tools,build-tools-23.0.3,android-23,addon-google_apis-google-23,extra-android-m2repository,extra-android-support,extra-google-google_play_services,extra-google-m2repository"
+ENV SDK_PACKAGES "platform-tools,build-tools-23.0.3,android-23,addon-google_apis-google-23,extra-android-m2repository,extra-android-support,extra-google-google_play_services,extra-google-m2repository"
 ENV GRADLE_VERSION "2.12"
 ENV PATH "$PATH:/sdk/tools/templates/gradle/wrapper:/sdk/tools/"
 ENV DEBIAN_FRONTEND noninteractive
