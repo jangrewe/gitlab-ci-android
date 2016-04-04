@@ -33,7 +33,7 @@ RUN tar zxvf sdk.tgz && \
     rm -v /sdk.tgz && \
     mv /android-sdk-linux /sdk
 
-RUN echo "y" | /sdk/tools/android update sdk -u --filter ${SDK_PACKAGES}
+RUN (while [ 1 ]; do sleep 5; echo y; done) | /sdk/tools/android update sdk -u --filter ${SDK_PACKAGES}
 
 RUN sed -i "s#distributionUrl=.*#distributionUrl=http\://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-all.zip#" /sdk/tools/templates/gradle/wrapper/gradle/wrapper/gradle-wrapper.properties && \
     /sdk/tools/templates/gradle/wrapper/gradlew
