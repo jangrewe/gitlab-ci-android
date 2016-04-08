@@ -27,14 +27,14 @@ RUN apt-get update && \
       lib32gcc1 \
       lib32ncurses5 \
       lib32z1 \
+      unzip \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN rm -f /etc/ssl/certs/java/cacerts; \
     /var/lib/dpkg/info/ca-certificates-java.postinst configure
 
-ADD http://dl.google.com/android/android-sdk_r${VERSION_SDK_TOOLS}-linux.tgz /sdk.tgz
-RUN tar zxvf sdk.tgz && \
-    rm -v /sdk.tgz && \
-    mv /android-sdk-linux ${ANDROID_HOME}
+ADD http://dl.google.com/android/repository/tools_r${VERSION_SDK_TOOLS}-linux.zip /tools.zip
+RUN unzip /tools.zip -d /sdk && \
+    rm -v /tools.zip
 
 RUN (while [ 1 ]; do sleep 5; echo y; done) | ${ANDROID_HOME}/tools/android update sdk -u -a -t ${SDK_PACKAGES}
