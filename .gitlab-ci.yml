@@ -5,9 +5,9 @@ stages:
 build:
   stage: build
   script:
-    - /usr/bin/docker build -t registry.faked.org/gitlab-ci/android:latest .
+    - docker build -t registry.faked.org/gitlab-ci/android:latest .
 
 push:
   stage: push
   script:
-    - /usr/bin/docker push registry.faked.org/gitlab-ci/android:latest
+    - docker push registry.faked.org/gitlab-ci/android:latest
