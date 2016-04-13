@@ -18,8 +18,8 @@ ENV ANDROID_HOME "/sdk"
 ENV PATH "$PATH:${ANDROID_HOME}/tools"
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
+RUN apt-get -qq update && \
+    apt-get install -qqy --no-install-recommends \
       curl \
       html2text \
       openjdk-8-jdk \
