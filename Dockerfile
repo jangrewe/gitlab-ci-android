@@ -29,7 +29,7 @@ RUN apt-get -qq update && \
       lib32ncurses5 \
       lib32z1 \
       unzip \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    && rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/* /var/cache/apt/*
 
 RUN rm -f /etc/ssl/certs/java/cacerts; \
     /var/lib/dpkg/info/ca-certificates-java.postinst configure
