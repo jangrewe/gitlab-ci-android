@@ -5,10 +5,10 @@
 # https://git.faked.org/jan/gitlab-ci-android
 #
 
-FROM ubuntu:15.10
+FROM ubuntu:16.04
 MAINTAINER Jan Grewe <jan@faked.org>
 
-ENV VERSION_SDK_TOOLS "25.1.1"
+ENV VERSION_SDK_TOOLS "25.1.3"
 ENV VERSION_BUILD_TOOLS "23.0.3"
 ENV VERSION_TARGET_SDK "23"
 
