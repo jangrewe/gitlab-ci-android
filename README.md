@@ -19,6 +19,7 @@ cache:
   - .gradle/
     
 build:
+  stage: build
   script:
   - ./gradlew assembleDebug
   artifacts:
