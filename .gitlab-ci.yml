@@ -1,10 +1,12 @@
 stages:
-- build
-
+  - build
+  - push
 build:
   stage: build
   script:
-  - docker build -t registry.magic-technik.de/gitlab-ci/android .
-  - docker push registry.magic-technik.de/gitlab-ci/android
-  tags:
-  - docker
+    - docker build -t registry.faked.org/gitlab-ci/android:latest .
+push:
+  stage: push
+  script:
+    - docker push registry.faked.org/gitlab-ci/android:latest
+
