@@ -8,11 +8,7 @@
 FROM ubuntu:16.04
 MAINTAINER Jan Grewe <jan@faked.org>
 
-ENV VERSION_SDK_TOOLS "26.0.2"
-ENV VERSION_BUILD_TOOLS "25.0.3"
-ENV VERSION_TARGET_SDK "25"
-
-ENV SDK_PACKAGES "build-tools-${VERSION_BUILD_TOOLS},android-${VERSION_TARGET_SDK},addon-google_apis-google-${VERSION_TARGET_SDK},platform-tools,extra-android-m2repository,extra-android-support,extra-google-google_play_services,extra-google-m2repository,ndk-bundle"
+ENV VERSION_SDK_TOOLS "3859397"
 
 ENV ANDROID_HOME "/sdk"
 ENV PATH "$PATH:${ANDROID_HOME}/tools"
@@ -34,12 +30,16 @@ RUN apt-get -qq update && \
 RUN rm -f /etc/ssl/certs/java/cacerts; \
     /var/lib/dpkg/info/ca-certificates-java.postinst configure
 
-RUN curl -s http://dl.google.com/android/repository/tools_r${VERSION_SDK_TOOLS}-linux.zip > /tools.zip && \
-    unzip /tools.zip -d /sdk && \
-    rm -v /tools.zip
+RUN curl -s https://dl.google.com/android/repository/sdk-tools-linux-${VERSION_SDK_TOOLS}.zip > /sdk.zip && \
+    unzip /sdk.zip -d /sdk && \
+    rm -v /sdk.zip
 
 RUN mkdir -p $ANDROID_HOME/licenses/ \
   && echo "8933bad161af4178b1185d1a37fbf41ea5269c55" > $ANDROID_HOME/licenses/android-sdk-license \
   && echo "84831b9409646a918e30573bab4c9c91346d8abd" > $ANDROID_HOME/licenses/android-sdk-preview-license
 
-RUN (while [ 1 ]; do sleep 5; echo y; done) | ${ANDROID_HOME}/tools/android update sdk -u -a -t ${SDK_PACKAGES}
+ADD packages.txt /sdk
+RUN mkdir -p /root/.android && \
+  touch /root/.android/repositories.cfg && \
+  ${ANDROID_HOME}/tools/bin/sdkmanager --update && \
+  (while [ 1 ]; do sleep 5; echo y; done) | ${ANDROID_HOME}/tools/bin/sdkmanager --package_file=/sdk/packages.txt
