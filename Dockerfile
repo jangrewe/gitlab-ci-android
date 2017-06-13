@@ -24,6 +24,7 @@ RUN apt-get -qq update && \
       lib32gcc1 \
       lib32ncurses5 \
       lib32z1 \
+      libqt5widgets5 \
       unzip \
       git \
       software-properties-common \
