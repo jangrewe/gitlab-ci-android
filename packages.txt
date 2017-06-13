@@ -6,3 +6,4 @@ extras;google;m2repository
 extras;m2repository;com;android;support;constraint;constraint-layout;1.0.2
 platform-tools
 platforms;android-25
+system-images;android-25;google_apis;x86
