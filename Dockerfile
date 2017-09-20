@@ -5,7 +5,7 @@
 # https://git.faked.org/jan/gitlab-ci-android
 #
 
-FROM ubuntu:16.04
+FROM ubuntu:17.04
 MAINTAINER Jan Grewe <jan@faked.org>
 
 ENV VERSION_SDK_TOOLS "3859397"
@@ -16,7 +16,9 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get -qq update && \
     apt-get install -qqy --no-install-recommends \
+      bzip2 \
       curl \
+      git-core \
       html2text \
       openjdk-8-jdk \
       libc6-i386 \
@@ -41,5 +43,7 @@ RUN mkdir -p $ANDROID_HOME/licenses/ \
 ADD packages.txt /sdk
 RUN mkdir -p /root/.android && \
   touch /root/.android/repositories.cfg && \
-  ${ANDROID_HOME}/tools/bin/sdkmanager --update && \
-  (while [ 1 ]; do sleep 5; echo y; done) | ${ANDROID_HOME}/tools/bin/sdkmanager --package_file=/sdk/packages.txt
+  ${ANDROID_HOME}/tools/bin/sdkmanager --update 
+
+RUN while read -r package; do PACKAGES="${PACKAGES}${package} "; done < /sdk/packages.txt && \
+    ${ANDROID_HOME}/tools/bin/sdkmanager ${PACKAGES}
