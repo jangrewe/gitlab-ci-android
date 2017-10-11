@@ -8,7 +8,7 @@
 FROM ubuntu:17.04
 MAINTAINER Jan Grewe <jan@faked.org>
 
-ENV VERSION_SDK_TOOLS "3859397"
+ENV VERSION_SDK_TOOLS "3952940"
 
 ENV ANDROID_HOME "/sdk"
 ENV PATH "$PATH:${ANDROID_HOME}/tools"
@@ -26,7 +26,16 @@ RUN apt-get -qq update && \
       lib32gcc1 \
       lib32ncurses5 \
       lib32z1 \
+      libqt5widgets5 \
       unzip \
+      git \
+      software-properties-common \
+      bzip2 \
+      ssh \
+      net-tools \
+      openssh-server \
+      socat \
+      curl \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN rm -f /etc/ssl/certs/java/cacerts; \
