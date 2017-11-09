@@ -24,5 +24,5 @@ build:
   - ./gradlew assembleDebug
   artifacts:
     paths:
-    - app/build/outputs/apk/app-debug.apk
+    - app/build/outputs/apk/debug/app-debug.apk
 ```
