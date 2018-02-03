@@ -48,3 +48,4 @@ RUN mkdir -p /root/.android && \
 RUN while read -r package; do PACKAGES="${PACKAGES}${package} "; done < /sdk/packages.txt && \
     ${ANDROID_HOME}/tools/bin/sdkmanager ${PACKAGES}
 
+RUN yes | ${ANDROID_HOME}/tools/bin/sdkmanager --licenses
