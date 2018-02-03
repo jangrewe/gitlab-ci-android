@@ -5,7 +5,7 @@
 # https://git.faked.org/jan/gitlab-ci-android
 #
 
-FROM ubuntu:17.04
+FROM ubuntu:17.10
 MAINTAINER Jan Grewe <jan@faked.org>
 
 ENV VERSION_SDK_TOOLS "3859397"
