@@ -1,9 +1,9 @@
 add-ons;addon-google_apis-google-24
-build-tools;27.0.3
+build-tools;28.0.2
 extras;android;m2repository
 extras;google;m2repository
 extras;google;google_play_services
 extras;m2repository;com;android;support;constraint;constraint-layout;1.0.2
 extras;m2repository;com;android;support;constraint;constraint-layout-solver;1.0.2
 platform-tools
-platforms;android-27
+platforms;android-28
