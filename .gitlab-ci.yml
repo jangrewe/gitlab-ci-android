@@ -6,13 +6,14 @@ stages:
 build:
   stage: build
   script:
-    - docker build -t registry.faked.org/gitlab-ci/android:latest .
+    - docker build -t registry.faked.org/gitlab-ci/android:${CI_COMMIT_SHORT_SHA} .
 
 push_latest:
   stage: push
   only:
     - master
   script:
+    - docker tag registry.faked.org/gitlab-ci/android:${CI_COMMIT_SHORT_SHA} registry.faked.org/gitlab-ci/android:latest
     - docker push registry.faked.org/gitlab-ci/android:latest
 
 push_tag:
@@ -20,4 +21,5 @@ push_tag:
   only:
     - tags
   script:
+    - docker tag registry.faked.org/gitlab-ci/android:${CI_COMMIT_SHORT_SHA} registry.faked.org/gitlab-ci/android:${CI_COMMIT_TAG}
     - docker push registry.faked.org/gitlab-ci/android:${CI_COMMIT_TAG}
