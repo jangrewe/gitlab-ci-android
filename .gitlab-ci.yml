@@ -1,12 +1,23 @@
 stages:
   - build
   - push
+  - push
+
 build:
   stage: build
   script:
     - docker build -t registry.faked.org/gitlab-ci/android:latest .
-push:
+
+push_latest:
   stage: push
+  only:
+    - master
   script:
     - docker push registry.faked.org/gitlab-ci/android:latest
 
+push_tag:
+  stage: push
+  only:
+    - tags
+  script:
+    - docker push registry.faked.org/gitlab-ci/android:${CI_COMMIT_TAG}
