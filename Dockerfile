@@ -1,14 +1,7 @@
-#
-# GitLab CI: Android v0.3
-#
-# https://hub.docker.com/r/jangrewe/gitlab-ci-android/
-# https://git.faked.org/jan/gitlab-ci-android
-#
-
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 MAINTAINER Jan Grewe <jan@faked.org>
 
-ENV VERSION_TOOLS "6200805"
+ENV VERSION_TOOLS "6609375"
 
 ENV ANDROID_SDK_ROOT "/sdk"
 # Keep alias for compatibility
@@ -26,7 +19,7 @@ RUN apt-get -qq update \
       libc6-i386 \
       lib32stdc++6 \
       lib32gcc1 \
-      lib32ncurses5 \
+      lib32ncurses6 \
       lib32z1 \
       unzip \
       locales \
