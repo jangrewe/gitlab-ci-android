@@ -46,5 +46,4 @@ RUN mkdir -p /root/.android \
  && sdkmanager --update
 
 ADD packages.txt /sdk
-RUN while read -r package; do PACKAGES="${PACKAGES}${package} "; done < /sdk/packages.txt \
- && sdkmanager ${PACKAGES}
+RUN sdkmanager --package_file=/sdk/packages.txt
