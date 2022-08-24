@@ -2,6 +2,7 @@ name: Docker Image CI
 
 on:
   push:
+    tags: [ "*" ]
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
@@ -19,9 +20,8 @@ jobs:
           images: |
             jangrewe/gitlab-ci-android
           tags: |
-            type=ref,event=branch
-            type=ref,event=tag
             type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'master') }}
+            type=raw,value={{tag}}
           flavor: latest=true
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
