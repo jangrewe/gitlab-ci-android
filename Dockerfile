@@ -1,7 +1,7 @@
 FROM ubuntu:20.04
 MAINTAINER Jan Grewe <jan@faked.org>
 
-ENV VERSION_TOOLS "8512546"
+ENV VERSION_TOOLS "9123335"
 
 ENV ANDROID_SDK_ROOT "/sdk"
 # Keep alias for compatibility
