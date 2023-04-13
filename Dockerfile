@@ -1,5 +1,5 @@
 FROM ubuntu:20.04
-MAINTAINER Jan Grewe <jan@faked.org>
+MAINTAINER Alexander13Oster <alexander13oster@faked.org>
 
 ENV VERSION_TOOLS "8512546"
 
