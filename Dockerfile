@@ -1,7 +1,8 @@
-FROM ubuntu:20.04
-MAINTAINER Jan Grewe <jan@faked.org>
+FROM ubuntu:22.04
 
-ENV VERSION_TOOLS "8512546"
+MAINTAINER Wahid Nur <wahidnr1@gmail.com>
+
+ENV VERSION_TOOLS "10406996"
 
 ENV ANDROID_SDK_ROOT "/sdk"
 # Keep alias for compatibility
@@ -15,10 +16,10 @@ RUN apt-get -qq update \
       curl \
       git-core \
       html2text \
-      openjdk-11-jdk \
+      openjdk-17-jdk \
       libc6-i386 \
       lib32stdc++6 \
-      lib32gcc1 \
+      lib32gcc-s1 \
       lib32ncurses6 \
       lib32z1 \
       unzip \
