@@ -1,6 +1,5 @@
 FROM ubuntu:22.04
-
-MAINTAINER Wahid Nur <wahidnr1@gmail.com>
+MAINTAINER Jan Grewe <jan@faked.org>
 
 ENV VERSION_TOOLS "10406996"
 
